@@ -6,19 +6,45 @@ Created on Tue Mar 18 23:45:05 2014
 """
 
 import json 
-import tempfile
 
-#id = 15
-#f = open("../../bd_store/lol/summonerData/" + str(id), "r")
-#bj = json.load(f)
+key = '37af0e1b-7079-4ae0-bd7e-573d4ff4fe61'
+idMinCollectId = 14
+idMaxCollectId = 25
 
-#f = open("../../bd_store/lol/summonerData/" + str(id), "w")
+def printGames(key, minId, maxId):
+    id = minId
+    while id < maxId:
+        id += 1 
+        try:
+            f = open('../../bd_store/lol/gameData/' + str(id))
+            data = json.load(f)
+            print data
+        except IOError:
+            print 'no game file associated; skipping id' + str(id)
 
-#f = open('yo.txt', "w")
-#f.write('[{"a": "A", "c": 3.0, "b": [2, 4]}]')
-#f.close()
+def printSummoners(key, minId, maxId):
+    id = minId
+    while id < maxId:
+        id += 1 
+        try:
+            f = open('../../bd_store/lol/gameData/' + str(id))
+            data = json.load(f)
+            print data
+        except IOError:
+            print 'no game file associated; skipping id' + str(id)
 
-f = open('15', "r")
-
-#json.load(f)
-
+def printRecentGameIds(key, minId, maxId):
+    id = minId
+    while id < maxId:
+        id += 1 
+        try:
+            f = open('../../bd_store/lol/gameData/' + str(id))
+            games = json.load(f)
+            for game in games["games"]:
+                print game['gameId']
+        except IOError:
+            print 'no game file associated; skipping id' + str(id)
+            
+#printGames(key, idMinCollectId, idMaxCollectId)
+#printSummoners(key, idMinCollectId, idMaxCollectId)
+printRecentGameIds(key, 14, 15)
