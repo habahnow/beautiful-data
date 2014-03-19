@@ -9,7 +9,7 @@ import json
 
 key = '37af0e1b-7079-4ae0-bd7e-573d4ff4fe61'
 idMinCollectId = 14
-idMaxCollectId = 25
+idMaxCollectId = 15
 
 def printGames(key, minId, maxId):
     id = minId
