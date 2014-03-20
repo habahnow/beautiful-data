@@ -13,9 +13,9 @@ import shutil
 
 key = '37af0e1b-7079-4ae0-bd7e-573d4ff4fe61'
 idMinCollectId = 14
-idMaxCollectId= 15
+idMaxCollectId= 35
 
-def collectSummoner(key, minId, maxId):
+def collectSummonerStats(key, minId, maxId):
   region = 'na'
   id = minId
   while id < maxId:
@@ -31,13 +31,13 @@ def collectSummoner(key, minId, maxId):
         f.close()
     except IOError:
        print 'no stats associated; skipping id' + str(id)
-def collectGames(key, minId, maxId):
+def collectRecentGames(key, minId, maxId):
   #some of the calls to games return 404 errors if they have no games neccesitating error handling  
   region = 'na'
   id = minId
   while id < maxId:
     id += 1
-    #https://prod.api.pvp.net/api/lol/na/v1.3/game/by-summoner/2/recent?api_key=e6d6726b-41fd-4ff8-b3ad-dd8354e75e97
+    #https://prod.api.pvp.net/api/lol/na/v1.3/game/by-summoner/15/recent?api_key=e6d6726b-41fd-4ff8-b3ad-dd8354e75e97
     games_url = 'https://prod.api.pvp.net/api/lol/' + region + '/v1.3/game/by-summoner/' + str(id) + "/recent?api_key=" + key
     
     try: 
@@ -51,8 +51,7 @@ def collectGames(key, minId, maxId):
          f.close()
     except IOError:
        print 'no games associated; skipping id' + str(id)
-        
-   
-collectSummoner(key, idMinCollectId, idMaxCollectId)
-collectGames(key, idMinCollectId, idMaxCollectId)
+       
+#collectSummonerStats(key, idMinCollectId, idMaxCollectId)
+#collectRecentGames(key, idMinCollectId, idMaxCollectId)
 
