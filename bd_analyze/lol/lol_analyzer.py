@@ -6,6 +6,7 @@ Created on Tue Mar 18 23:45:05 2014
 """
 
 import json 
+import numpy as np
 
 key = '37af0e1b-7079-4ae0-bd7e-573d4ff4fe61'
 idMinCollectId = 14
@@ -16,7 +17,7 @@ def printGamesJson(minId, maxId):
     while id < maxId:
         id += 1 
         try:
-            f = open('../../bd_store/lol/gameData/' + str(id))
+            f = open('../../bd_store/lol/game_data/' + str(id))
             data = json.load(f)
             print data
         except IOError:
@@ -27,7 +28,7 @@ def printSummonersJson(minId, maxId):
     while id < maxId:
         id += 1 
         try:
-            f = open('../../bd_store/lol/gameData/' + str(id))
+            f = open('../../bd_store/lol/game_data/' + str(id))
             data = json.load(f)
             print data
         except IOError:
@@ -46,12 +47,12 @@ def getRecentGameChampionIds(minId, maxId):
 def getRecentGameChampionIdsBySummonerId(summonerId):
        championIds = []
        try:
-            f = open('../../bd_store/lol/gameData/' + str(summonerId))
+            f = open('../../bd_store/lol/game_data/' + str(summonerId))
             games = json.load(f)
             for game in games["games"]:
                 championIds.append(game['championId'])
        except IOError:
-            print 'no game file associated; skipping id' + str(summonerId)   
+            pass  
        return championIds
        
        
@@ -67,12 +68,12 @@ def getRecentSpellOneIds(minId, maxId):
 def getRecentSpellOneIdsBySummonerId(summonerId):  
     spellOneIds = []
     try:
-        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        f = open('../../bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             spellOneIds.append(game['spell1'])
     except IOError:
-        print 'no game file associated; skipping id' + str(summonerId)
+        pass
     return spellOneIds
     
     
@@ -88,12 +89,12 @@ def getRecentSpellTwoIds(minId, maxId):
 def getRecentSpellTwoIdsBySummonerId(summonerId):   
     spellTwoIds= []
     try:
-        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        f = open('../../bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             spellTwoIds.append(game['spell2'])
     except IOError:
-        print 'no game file associated; skipping id' + str(summonerId)
+        pass
     return  spellTwoIds
   
   
@@ -109,13 +110,13 @@ def getRecentGoldEarned(minId, maxId):
 def getRecentGoldEarnedBySummonerId(summonerId):
     recentGoldEarned= []
     try:
-        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        f = open('../../bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
             recentGoldEarned.append(stats['goldEarned'])
     except IOError:
-        print 'no game file associated; skipping id' + str(summonerId)
+        pass
     return  recentGoldEarned
     
     
@@ -131,13 +132,16 @@ def getRecentNumDeaths(minId, maxId):
 def getRecentNumDeathsBySummonerId(summonerId):
     recentNumDeaths= []
     try:
-        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        f = open('../../bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
-            recentNumDeaths.append(stats['numDeaths'])
+            try:
+                recentNumDeaths.append(stats['numDeaths'])
+            except: 
+                pass            
     except IOError:
-        print 'no game file associated; skipping id' + str(summonerId)
+        pass
     return  recentNumDeaths
     
     
@@ -153,17 +157,17 @@ def getRecentMinionsKilled(minId, maxId):
 def getRecentMinionsKilledBySummonerId(summonerId):
     recentMinionsKilled= []
     try:
-        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        f = open('../../bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
             recentMinionsKilled.append(stats['minionsKilled'])
     except IOError:
-        print 'no game file associated; skipping id' + str(summonerId)
+        pass
     return  recentMinionsKilled
     
     
-def getRecentgoldSpent(minId, maxId):
+def getRecentGoldSpent(minId, maxId):
     recentGoldSpent= []
     id = minId
     while id < maxId:
@@ -175,13 +179,13 @@ def getRecentgoldSpent(minId, maxId):
 def getRecentGoldSpentBySummonerId(summonerId):
     recentGoldSpent= []
     try:
-        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        f = open('../../bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
             recentGoldSpent.append(stats['goldSpent'])
     except IOError:
-        print 'no game file associated; skipping id' + str(summonerId)
+        pass
     return  recentGoldSpent
     
     
@@ -197,13 +201,13 @@ def getRecentTotalDamageDealt(minId, maxId):
 def getRecentTotalDamageDealBySummonerId(summonerId):
     recentTotalDamageDealt= []
     try:
-        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        f = open('../../bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
             recentTotalDamageDealt.append(stats['totalDamageDealt'])
     except IOError:
-        print 'no game file associated; skipping id' + str(summonerId)
+        pass
     return  recentTotalDamageDealt
     
 
@@ -219,13 +223,13 @@ def getRecentTotalDamageTaken(minId, maxId):
 def getRecentTotalDamageTakenBySummonerId(summonerId):
     recentTotalDamageTaken= []
     try:
-        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        f = open('../../bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
             recentTotalDamageTaken.append(stats['totalDamageTaken'])
     except IOError:
-        print 'no game file associated; skipping id' + str(summonerId)
+        pass
     return  recentTotalDamageTaken
     
     
@@ -241,13 +245,13 @@ def getRecentWins(minId, maxId):
 def getRecentWinsBySummonerId(summonerId):
     recentLargestKillingSprees= []
     try:
-        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        f = open('../../bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
             recentLargestKillingSprees.append(stats['win'])
     except IOError:
-        print 'no game file associated; skipping id' + str(summonerId)
+        pass
     return  recentLargestKillingSprees
     
     
@@ -263,13 +267,13 @@ def getRecentTimesPlayed(minId, maxId):
 def getRecentTimesPlayedBySummonerId(summonerId):
     recentLargestKillingSprees= []
     try:
-        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        f = open('../../bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
             recentLargestKillingSprees.append(stats['timePlayed'])
     except IOError:
-        print 'no game file associated; skipping id' + str(summonerId)
+        pass
     return  recentLargestKillingSprees
     
     
@@ -285,7 +289,7 @@ def getRecentSevenItems(minId, maxId):
 def getRecentSevenItemsBySummonerId(summonerId):
     recentLargestKillingSprees= []
     try:
-        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        f = open('../../bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -293,49 +297,170 @@ def getRecentSevenItemsBySummonerId(summonerId):
                 item0 = stats['item0']
                 recentLargestKillingSprees.append(item0)
             except:
-                print 'no item 0'
+                pass
             try:
                 item1 = stats['item1']
                 recentLargestKillingSprees.append(item1)
             except:
-                print 'no item 1'
+                pass
             try:
                 item2 = stats['item2']
                 recentLargestKillingSprees.append(item2)
             except:
-                print 'no item 2'
+                pass
             try:
                 item3 = stats['item3']
                 recentLargestKillingSprees.append(item3)
             except:
-                print 'no item 3'
+                pass
             try:
                 item4 = stats['item4']
                 recentLargestKillingSprees.append(item4)
             except:
-                print 'no item 4'
+                pass
             try:
                 item5 = stats['item5']
                 recentLargestKillingSprees.append(item5)
             except:
-                print 'no item 5'
+                pass
     except IOError:
-        print 'no game file associated; skipping id' + str(summonerId)
+        pass
     return  recentLargestKillingSprees
     
     
+def getMaxDeaths():
+    return np.min(getRecentNumDeaths(idMinCollectId, idMaxCollectId))
+
+def getMinDeaths():
+    return np.min(getRecentNumDeaths(idMinCollectId, idMaxCollectId))
+
+def getAvgMinionsKilled():
+    return np.average(getRecentMinionsKilled(idMinCollectId, idMaxCollectId))
     
-#printGames(key, idMinCollectId, idMaxCollectId)
-#printSummoners(key, idMinCollectId, idMaxCollectId)
+def getAvgGoldSpent():
+    return np.average(getRecentGoldSpent(idMinCollectId, idMaxCollectId))
+    
+def getMinGoldSpent():
+    return np.min(getRecentGoldSpent(idMinCollectId, idMaxCollectId))
+    
+def getMaxGoldSpent():
+    return np.max(getRecentGoldSpent(idMinCollectId, idMaxCollectId))
+    
+def getAvgGoldEarned():
+    return np.average(getRecentGoldEarned(idMinCollectId, idMaxCollectId))
+    
+def getMaxGoldEarned():
+    return np.max(getRecentGoldEarned(idMinCollectId, idMaxCollectId))
+
+def getMinGoldEarned():
+    return np.min(getRecentGoldEarned(idMinCollectId, idMaxCollectId))
+    
+def getAvgTotalDamageDealt():
+    return np.average(getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId))
+    
+def getMaxTotalDamageDealt():
+    return np.max(getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId))
+    
+def getMinTotalDamageDealt():
+    return np.min(getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId))
+    
+def getAvgTotalDamageTaken():
+    return np.average(getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId))
+    
+def getMaxTotalDamageTaken():
+    return np.max(getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId))
+    
+def getMinTotalDamageTaken():
+    return np.min(getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId))
+    
+def getAvgWins():
+    return np.min(getRecentWins(idMinCollectId, idMaxCollectId))
+    
+def getAvgTimePlayed():
+    return np.min(getRecentTimesPlayed(idMinCollectId, idMaxCollectId))
+    
+def getMaxTimePlayed():
+    return np.max(getRecentTimesPlayed(idMinCollectId, idMaxCollectId))
+    
+def getMinTimePlayed():
+    return np.min(getRecentTimesPlayed(idMinCollectId, idMaxCollectId))
+    
+def getSummonerAvgGoldEarnings():
+    summonerAvgGoldEarnings = []
+    results = getRecentGoldEarned(idMinCollectId, idMaxCollectId)
+    for result in results:
+        summonerAvgGoldEarnings.append(np.average(result))
+    return summonerAvgGoldEarnings
+    
+def getSummonerAvgGoldSpendings():
+    summonerAvgGoldSpendings = []
+    results = getRecentGoldSpent(idMinCollectId, idMaxCollectId)
+    for result in results:
+        summonerAvgGoldSpendings.append(np.average(result))
+    return summonerAvgGoldSpendings
+    
+def getSummonerAvgNumDeaths():
+    summonerAvgNumDeaths = []
+    results = getRecentNumDeaths(idMinCollectId, idMaxCollectId)
+    for result in results:
+        summonerAvgNumDeaths.append(round(np.average(result)))
+    return summonerAvgNumDeaths
+    
+def getSummonerAvgMinionsKilled():
+    summonerAvgMinionsKilled = []
+    results = getRecentMinionsKilled(idMinCollectId, idMaxCollectId)
+    for result in results:
+        summonerAvgMinionsKilled.append(round(np.average(result)))
+    return summonerAvgMinionsKilled
+    
+def getSummonerAvgTotalDamageDealt():
+    summonerAvgTotalDamageDealt = []
+    results = getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId)
+    for result in results:
+        summonerAvgTotalDamageDealt.append(np.average(result))
+    return summonerAvgTotalDamageDealt
+    
+def getSummonerAvgTotalDamageTaken():
+    summonerAvgTotalDamageTaken = []
+    results = getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId)
+    for result in results:
+        summonerAvgTotalDamageTaken.append(np.average(result))
+    return summonerAvgTotalDamageTaken
+    
+def getSummonerWinRatio():
+    summonerAvgWins = []
+    results = getRecentWins(idMinCollectId, idMaxCollectId)
+    for result in results:
+        summonerAvgWins.append(round(np.average(result), 2))
+    return summonerAvgWins 
+    
+def getSummonerAvgTimePlayedInMinutes():
+    summonerAvgTimePlayedInMinutes = []
+    results = getRecentTimesPlayed(idMinCollectId, idMaxCollectId)
+    for result in results:
+        summonerAvgTimePlayedInMinutes.append(round(np.average(result), 3)/ 60.0)
+    return summonerAvgTimePlayedInMinutes 
+    
+#printGamesJson(idMinCollectId, idMaxCollectId)
+#printSummonersJson(idMinCollectId, idMaxCollectId)
 #print getRecentGameChampionIds(idMinCollectId, idMaxCollectId)
 #print getRecentSpellOneIds(idMinCollectId, idMaxCollectId)
 #print getRecentSpellTwoIds(idMinCollectId, idMaxCollectId)
 #print getRecentGoldEarned(idMinCollectId, idMaxCollectId)
 #print getRecentNumDeaths(idMinCollectId, idMaxCollectId)
 #print getRecentMinionsKilled(idMinCollectId, idMaxCollectId)
-#print getRecentgoldSpent(idMinCollectId, idMaxCollectId)
+#print getRecentGoldSpent(idMinCollectId, idMaxCollectId)
 #print getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId)
 #print getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId)
 #print getRecentWins(idMinCollectId, idMaxCollectId)
 #print getRecentTimesPlayed(idMinCollectId, idMaxCollectId)
 #print getRecentSevenItems(idMinCollectId, idMaxCollectId)
+#print getSummonerAvgGoldEarnings()
+#print getSummonerAvgGoldSpendings()
+#print getSummonerAvgNumDeaths()
+#print getSummonerAvgMinionsKilled()
+#print getSummonerAvgTotalDamageDealt()
+#print getSummonerAvgTotalDamageTaken()
+#print getSummonerWinRatio()
+#print getSummonerAvgTimePlayedInMinutes()
+

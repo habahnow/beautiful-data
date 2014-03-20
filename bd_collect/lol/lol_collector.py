@@ -25,7 +25,7 @@ def collectSummonerStats(key, minId, maxId):
     stats_url = 'https://prod.api.pvp.net/api/lol/'+ region + '/v1.2/stats/by-summoner/'+ str(id) +'/summary?api_key=' + key
     try:
         response = urllib2.urlopen(stats_url)
-        f = open("../../bd_store/lol/summonerData/" + str(id), "w")
+        f = open("../../bd_store/lol/summoner_data/" + str(id), "w")
         shutil.copyfileobj(response, f)
         time.sleep(1)
         f.close()
@@ -43,7 +43,7 @@ def collectRecentGames(key, minId, maxId):
     try: 
          #games_info = json.load(urllib2.urlopen(games_url))
          response = urllib2.urlopen(games_url)
-         f = open("../../bd_store/lol/gameData/" + str(id), "w")
+         f = open("../../bd_store/lol/game_data/" + str(id), "w")
          shutil.copyfileobj(response, f)
          #f.write(str(games_info))
          #json.dump(games_info, f)
