@@ -10,7 +10,7 @@ import numpy as np
 
 key = '37af0e1b-7079-4ae0-bd7e-573d4ff4fe61'
 idMinCollectId = 14
-idMaxCollectId = 35
+idMaxCollectId = 1000
 
 def printGamesJson(minId, maxId):
     id = minId
@@ -161,7 +161,10 @@ def getRecentMinionsKilledBySummonerId(summonerId):
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
-            recentMinionsKilled.append(stats['minionsKilled'])
+            try:
+                recentMinionsKilled.append(stats['minionsKilled'])
+            except:
+                pass          
     except IOError:
         pass
     return  recentMinionsKilled
@@ -183,7 +186,10 @@ def getRecentGoldSpentBySummonerId(summonerId):
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
-            recentGoldSpent.append(stats['goldSpent'])
+            try:
+                recentGoldSpent.append(stats['goldSpent'])
+            except:
+                pass
     except IOError:
         pass
     return  recentGoldSpent
@@ -205,7 +211,10 @@ def getRecentTotalDamageDealBySummonerId(summonerId):
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
-            recentTotalDamageDealt.append(stats['totalDamageDealt'])
+            try:
+                recentTotalDamageDealt.append(stats['totalDamageDealt'])
+            except:
+                pass
     except IOError:
         pass
     return  recentTotalDamageDealt
@@ -227,7 +236,10 @@ def getRecentTotalDamageTakenBySummonerId(summonerId):
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
-            recentTotalDamageTaken.append(stats['totalDamageTaken'])
+            try:
+                recentTotalDamageTaken.append(stats['totalDamageTaken'])
+            except:
+                pass
     except IOError:
         pass
     return  recentTotalDamageTaken
@@ -329,61 +341,124 @@ def getRecentSevenItemsBySummonerId(summonerId):
     
     
 def getMaxDeaths():
-    return np.min(getRecentNumDeaths(idMinCollectId, idMaxCollectId))
+    numDeaths = []
+    for death in getRecentNumDeaths(idMinCollectId, idMaxCollectId):
+        numDeaths.append(np.max(death))
+    return np.max(numDeaths)
 
 def getMinDeaths():
-    return np.min(getRecentNumDeaths(idMinCollectId, idMaxCollectId))
+    numDeaths = []
+    for death in getRecentNumDeaths(idMinCollectId, idMaxCollectId):
+        numDeaths.append(np.min(death))
+    return np.min(numDeaths)
+    
+def getAvgDeaths():
+    numDeaths = []
+    for death in getRecentNumDeaths(idMinCollectId, idMaxCollectId):
+        numDeaths.append(np.average(death))
+    return round(np.average(numDeaths))
 
 def getAvgMinionsKilled():
-    return np.average(getRecentMinionsKilled(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentMinionsKilled(idMinCollectId, idMaxCollectId):
+        elements.append(np.average(element))
+    return round(np.average(elements))
+
+def getMaxMinionsKilled():
+    elements = []
+    for element in getRecentMinionsKilled(idMinCollectId, idMaxCollectId):
+        elements.append(np.max(element))
+    return round(np.max(elements))
     
 def getAvgGoldSpent():
-    return np.average(getRecentGoldSpent(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentGoldSpent(idMinCollectId, idMaxCollectId):
+        elements.append(np.average(element))
+    return round(np.average(elements))
     
 def getMinGoldSpent():
-    return np.min(getRecentGoldSpent(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentGoldSpent(idMinCollectId, idMaxCollectId):
+        elements.append(np.min(element))
+    return round(np.min(elements))
     
 def getMaxGoldSpent():
-    return np.max(getRecentGoldSpent(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentGoldSpent(idMinCollectId, idMaxCollectId):
+        elements.append(np.max(element))
+    return round(np.max(elements))
     
 def getAvgGoldEarned():
-    return np.average(getRecentGoldEarned(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentGoldEarned(idMinCollectId, idMaxCollectId):
+        elements.append(np.average(element))
+    return round(np.average(elements))
     
 def getMaxGoldEarned():
-    return np.max(getRecentGoldEarned(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentGoldEarned(idMinCollectId, idMaxCollectId):
+        elements.append(np.max(element))
+    return round(np.max(elements))
 
 def getMinGoldEarned():
-    return np.min(getRecentGoldEarned(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentGoldEarned(idMinCollectId, idMaxCollectId):
+        elements.append(np.min(element))
+    return round(np.min(elements))
     
 def getAvgTotalDamageDealt():
-    return np.average(getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId):
+        elements.append(np.average(element))
+    return round(np.average(elements))
     
 def getMaxTotalDamageDealt():
-    return np.max(getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId):
+        elements.append(np.max(element))
+    return round(np.max(elements))
     
 def getMinTotalDamageDealt():
-    return np.min(getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId):
+        elements.append(np.min(element))
+    return round(np.min(elements))
     
 def getAvgTotalDamageTaken():
-    return np.average(getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId):
+        elements.append(np.average(element))
+    return round(np.average(elements))
     
 def getMaxTotalDamageTaken():
-    return np.max(getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId):
+        elements.append(np.max(element))
+    return round(np.max(elements))
     
 def getMinTotalDamageTaken():
-    return np.min(getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId))
-    
-def getAvgWins():
-    return np.min(getRecentWins(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId):
+        elements.append(np.min(element))
+    return round(np.min(elements))
     
 def getAvgTimePlayed():
-    return np.min(getRecentTimesPlayed(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentTimesPlayed(idMinCollectId, idMaxCollectId):
+        elements.append(np.average(element))
+    return round(np.average(elements))
     
 def getMaxTimePlayed():
-    return np.max(getRecentTimesPlayed(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentTimesPlayed(idMinCollectId, idMaxCollectId):
+        elements.append(np.max(element))
+    return round(np.max(elements))
     
 def getMinTimePlayed():
-    return np.min(getRecentTimesPlayed(idMinCollectId, idMaxCollectId))
+    elements = []
+    for element in getRecentTimesPlayed(idMinCollectId, idMaxCollectId):
+        elements.append(np.min(element))
+    return round(np.min(elements))
     
 def getSummonerAvgGoldEarnings():
     summonerAvgGoldEarnings = []
@@ -438,7 +513,7 @@ def getSummonerAvgTimePlayedInMinutes():
     summonerAvgTimePlayedInMinutes = []
     results = getRecentTimesPlayed(idMinCollectId, idMaxCollectId)
     for result in results:
-        summonerAvgTimePlayedInMinutes.append(round(np.average(result), 3)/ 60.0)
+        summonerAvgTimePlayedInMinutes.append(round(np.average(result) /  60.0))
     return summonerAvgTimePlayedInMinutes 
     
 #printGamesJson(idMinCollectId, idMaxCollectId)
@@ -455,12 +530,32 @@ def getSummonerAvgTimePlayedInMinutes():
 #print getRecentWins(idMinCollectId, idMaxCollectId)
 #print getRecentTimesPlayed(idMinCollectId, idMaxCollectId)
 #print getRecentSevenItems(idMinCollectId, idMaxCollectId)
+#print getMaxDeaths()
+#print getMinDeaths()
+#print getAvgDeaths()
+#print getAvgMinionsKilled()
+#print getMaxMinionsKilled()
+#print getAvgGoldSpent()
+#print getMinGoldSpent()
+#print getMaxGoldSpent()
+#print getAvgGoldEarned()
+#print getMinGoldEarned()
+#print getMaxGoldEarned()
+#print getAvgTotalDamageDealt()
+#print getMinTotalDamageDealt()
+#print getMaxTotalDamageDealt()
+#print getAvgTotalDamageTaken()
+#print getMinTotalDamageTaken()
+#print getMaxTotalDamageTaken()
+#print getAvgTimePlayed()
+#print getMinTimePlayed()
+#print getMaxTimePlayed()
+#print getSummonerAvgTimePlayedInMinutes()
+#print getSummonerAvgMinionsKilled()
 #print getSummonerAvgGoldEarnings()
 #print getSummonerAvgGoldSpendings()
 #print getSummonerAvgNumDeaths()
-#print getSummonerAvgMinionsKilled()
 #print getSummonerAvgTotalDamageDealt()
 #print getSummonerAvgTotalDamageTaken()
 #print getSummonerWinRatio()
-#print getSummonerAvgTimePlayedInMinutes()
 

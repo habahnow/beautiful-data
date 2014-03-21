@@ -13,9 +13,9 @@ import shutil
 
 key = '37af0e1b-7079-4ae0-bd7e-573d4ff4fe61'
 idMinCollectId = 14
-idMaxCollectId= 35
+idMaxCollectId= 1000
 
-def collectSummonerStats(key, minId, maxId):
+def collectSummonerStats(minId, maxId):
   region = 'na'
   id = minId
   while id < maxId:
@@ -31,7 +31,7 @@ def collectSummonerStats(key, minId, maxId):
         f.close()
     except IOError:
        print 'no stats associated; skipping id' + str(id)
-def collectRecentGames(key, minId, maxId):
+def collectRecentGames(minId, maxId):
   #some of the calls to games return 404 errors if they have no games neccesitating error handling  
   region = 'na'
   id = minId
