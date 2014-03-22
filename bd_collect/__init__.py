@@ -1,5 +1,5 @@
 # $Id$ -- initializer
-
+"""
 import json
 import urllib2
 import time
@@ -85,7 +85,7 @@ else:
     print "press ctrl + c to exit program now to safely exit program and save changes\n"
     if (elapsed_time < 10):
       time.sleep(10 - elapsed_time + 1)
-
+"""
 
 
 
