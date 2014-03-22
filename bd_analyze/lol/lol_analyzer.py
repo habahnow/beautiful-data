@@ -449,7 +449,6 @@ def getAvgTimePlayed():
     for element in getRecentTimesPlayed(idMinCollectId, idMaxCollectId):
         elements.append(np.average(element))
     get = np.array(elements)
-    # print get.shape
     return round(np.average(elements))
     
 def getMaxTimePlayed():
@@ -553,7 +552,7 @@ def getSummonerAvgTimePlayedInMinutes():
 #print getMaxTotalDamageTaken()
 # getAvgTimePlayed()
 #print getMinTimePlayed()
-#print getMaxTimePlayed()
+# print getMaxTimePlayed()
 #print getSummonerAvgTimePlayedInMinutes()
 #print getSummonerAvgMinionsKilled()
 #print getSummonerAvgGoldEarnings()
