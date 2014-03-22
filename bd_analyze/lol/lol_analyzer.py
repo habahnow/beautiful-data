@@ -12,8 +12,8 @@ import pylab as pl
 
 
 key = '37af0e1b-7079-4ae0-bd7e-573d4ff4fe61'
-idMinCollectId = 10
-idMaxCollectId = 10000
+idMinCollectId = 1500
+idMaxCollectId = 50000
 
 def printGamesJson(minId, maxId):
     id = minId
@@ -282,7 +282,7 @@ def getRecentTimesPlayed(minId, maxId):
 def getRecentTimesPlayedBySummonerId(summonerId):
     getRecentTimesPlayedBySummonerId= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('../../bd_store/lol/gameData/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -577,6 +577,7 @@ def getAvgSummonerAssists():
     for result in results:
         avgSummonerAssists.append(round(np.average(result), 3))
     return avgSummonerAssists
+
 #printGamesJson(idMinCollectId, idMaxCollectId)
 #printSummonersJson(idMinCollectId, idMaxCollectId)
 #print getRecentGameChampionIds(idMinCollectId, idMaxCollectId)
@@ -611,7 +612,7 @@ def getAvgSummonerAssists():
 #print getAvgTotalDamageTaken()
 #print getMinTotalDamageTaken()
 #print getMaxTotalDamageTaken()
-#print getAvgTimePlayed()
+print getAvgTimePlayed()
 #print getMinTimePlayed()
 #print getMaxTimePlayed()
 #print getSummonerAvgTimePlayedInMinutes()
@@ -622,22 +623,65 @@ def getAvgSummonerAssists():
 #print getSummonerAvgTotalDamageDealt()
 #print getSummonerAvgTotalDamageTaken()
 #print getSummonerWinRatio()
-print getRecentSummonerAssists(idMinCollectId, idMaxCollectId)
-print getAvgSummonerAssists()
+print getRecentTimesPlayed(11000,13000)
+"""
 z = getAvgSummonerAssists()
 x = getSummonerMaxDamageDealt()
 y = getSummonerAvgTotalDamageDealt()
 print np.array(z).shape
 print np.array(y).shape
 print np.array(x).shape
-T = np.arctan2(y,x)
-print T
+"""
 
+def plotScatterTotalDamagevAvgAssists():
+    z = getAvgSummonerAssists()
+    x = getSummonerMaxDamageDealt()
+    y = getSummonerAvgTotalDamageDealt()
+    print np.array(z).shape
+    print np.array(y).shape
+    print np.array(x).shape
+    T = np.arctan2(z,x)
+    print T
+
+    plt.scatter(x, z,c = T, alpha=0.5)
+    plt.xlabel('Max Damage Dealt')
+    plt.ylabel('Avg Summoner Assists')
+
+    plt.show()
+def plotScatterMaxDamagevAvgTotalDamage():
+    z = getAvgSummonerAssists()
+    x = getSummonerMaxDamageDealt()
+    y = getSummonerAvgTotalDamageDealt()
+    print np.array(z).shape
+    print np.array(y).shape
+    print np.array(x).shape
+    T = np.arctan2(y,x)
+    print T
+
+    plt.scatter(x, y,c = T, alpha=0.5)
+    plt.xlabel('Max Damage Dealt')
+    plt.ylabel('Avg Total Damage Dealt')
+
+    plt.show()
+def plotScatterTotalDamage():
+    z = getAvgSummonerAssists()
+    x = getSummonerMaxDamageDealt()
+    y = getSummonerAvgTotalDamageDealt()
+    print np.array(z).shape
+    print np.array(y).shape
+    print np.array(x).shape
+    T = np.arctan2(y,x)
+    print T
+
+    plt.scatter(x, y,c = T, alpha=0.5)
+    plt.xlabel('Max Damage Dealt')
+    plt.ylabel('Avg Total Damage Dealt')
+
+    plt.show()
 # physical damage, magical damage
 
-plt.scatter(x, y,c = T, alpha=0.5)
-plt.xlabel('Max Damage Dealt')
-plt.ylabel('Avg Total Damage Dealt')
 
-plt.show()
+#plotScatterMaxDamagevAvgTotalDamage()
+# for 1500 -> 5000 ids
+# plotScatterTotalDamagevAvgAssists()
 

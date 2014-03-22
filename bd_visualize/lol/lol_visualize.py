@@ -185,11 +185,11 @@ def goldSpentEarnedBarGraph():
 
 #goldSpentEarnedBarGraph()
 #damageTakenDealtBarGraph()
-#summonerAvgTimePlayedInMinutesHistogram()
+#summonerAvgTimePlayedInMinutesHistogram() works
 #summonerAvgMinionsKilledHistogram()
 #summonerAvgGoldEarningsHistogram()
 #summonerAvgGoldSpendingsHistogram()
 #summonerAvgNumDeathsHistogram()
-#summonerAvgTotalDamageDealtHistogram()
-#summonerAvgTotalDamageTakenHistogram()
+#summonerAvgTotalDamageDealtHistogram() works
+summonerAvgTotalDamageTakenHistogram()
 
