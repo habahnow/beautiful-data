@@ -4,6 +4,7 @@ import argparse
 from collections import defaultdict
 from bd_visualize import lol_visualize
 from bd_analyze import lol_analyzer
+from bd_collect import lol_collector
 import numpy as np
 
 
@@ -16,6 +17,8 @@ def parseArguments():
     parser.add_argument('-m', '--min-area', dest='minArea', type=float, default=2.0, help='specify the minimum area threshold')
     parser.add_argument('-l', '--lol')
     parser.add_argument('-r', '--read', default='')
+    parser.add_argument('-n', '--min', default=0)
+    parser.add_argument('-o', '--max', default=10)
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -26,7 +29,7 @@ if __name__ == "__main__":
     
     if args.lol == 'TimePlayedHistogram':
         lol_visualize.summonerAvgTimePlayedInMinutesHistogram(lol_analyzer.getSummonerAvgTimePlayedInMinutes(), lol_analyzer.getAvgTimePlayed(), lol_analyzer.getMaxTimePlayed())
-    elif args.lol == 'AvgMinionKilleHistogram':
+    elif args.lol == 'AvgMinionKilledHistogram':
         lol_visualize.summonerAvgMinionsKilledHistogram(lol_analyzer.getSummonerAvgMinionsKilled(), lol_analyzer.getAvgMinionsKilled(), lol_analyzer.getMaxMinionsKilled())
     elif args.lol == 'AvgGoldEarnedHistogram':
         lol_visualize.summonerAvgGoldEarningsHistogram(lol_analyzer.getSummonerAvgGoldEarnings(), lol_analyzer.getAvgGoldEarned(), lol_analyzer.getMaxGoldEarned())
@@ -47,8 +50,16 @@ if __name__ == "__main__":
     else:
         print 'No such graph exist !'
 
-    
-
+    # for writing new files
+    # use -n for min, -o for max, -r non '' value
+    if args.read == '':
+        print 'Not reading data'
+    else:
+        if int(args.min) < int(args.max):
+            lol_collector.collectGameDataRange(int(args.min), int(args.max))
+            print 'Collected data from %s to %s' % (args.min, args.max)
+        else:
+            print 'Boo!'
 
 
 
