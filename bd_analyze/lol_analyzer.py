@@ -10,7 +10,7 @@ import numpy as np
 
 key = '37af0e1b-7079-4ae0-bd7e-573d4ff4fe61'
 idMinCollectId = 14
-idMaxCollectId = 1000
+idMaxCollectId = 40000
 
 def printGamesJson(minId, maxId):
     id = minId
