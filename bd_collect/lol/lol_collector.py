@@ -53,5 +53,5 @@ def collectRecentGames(minId, maxId):
        print 'no games associated; skipping id' + str(id)
        
 #collectSummonerStats(key, idMinCollectId, idMaxCollectId)
-#collectRecentGames(key, idMinCollectId, idMaxCollectId)
+collectRecentGames(idMinCollectId, idMaxCollectId)
 

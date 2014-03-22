@@ -4,76 +4,96 @@ Created on Thu Mar 20 16:35:46 2014
 
 @author: Eddie
 """
-import sys
-sys.path.append('../../bd_analyze/lol/')
-import lol_analyzer
+#import sys
+#sys.path.append('../bd_analyze/')
+#import lol_analyzer
+
+#import lol_analyzer
+
+#import os
+#import sys
+#sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
+#from sortings import config
+
+#from bd_analyze import lol_analyzer
 import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 
-def summonerAvgTimePlayedInMinutesHistogram():
-    hist, bins = np.histogram(lol_analyzer.getSummonerAvgTimePlayedInMinutes(), bins=50)
+def summonerAvgTimePlayedInMinutesHistogram(summonerAvgTimePlayed, avgTimePlayed, maxTimePlayed):
+    hist, bins = np.histogram(summonerAvgTimePlayed, bins=50)
     width = 0.7 * (bins[1] - bins[0])
     center = (bins[:-1] + bins[1:]) / 2
     plt.bar(center, hist, align='center', width=width)
     plt.title('Average Minutes Played per Game ' )
     plt.gca().set_position((.1, .3, .8, .6))
-    plt.figtext(.1, .1, "Average Time Played per Game: " + str(round(lol_analyzer.getAvgTimePlayed() / 60)) + "minutes\nMax Time Played per Game: " +  str(lol_analyzer.getMaxTimePlayed()/ 60) + 'minutes')
+    plt.figtext(.1, .1, "Average Time Played per Game: " + str(round(avgTimePlayed / 60)) + "minutes\nMax Time Played per Game: " +  str(maxTimePlayed/ 60) + 'minutes')
     plt.ylabel('Number of Games')
     plt.xlabel('Game Time (Minutes)')
     plt.show()
 
-def summonerAvgMinionsKilledHistogram():
-    hist, bins = np.histogram(lol_analyzer.getSummonerAvgMinionsKilled(), bins=50)
+def summonerAvgMinionsKilledHistogram(summonerAvgMinionsKilled, avgMinionsKilled, maxMinionsKilled):
+    #hist, bins = np.histogram(lol_analyzer.getSummonerAvgMinionsKilled(), bins=50)\hist, bins = np.histogram(lol_analyzer.getSummonerAvgMinionsKilled(), bins=50)
+    hist, bins = np.histogram(summonerAvgMinionsKilled, bins=50)
     width = 0.7 * (bins[1] - bins[0])
     center = (bins[:-1] + bins[1:]) / 2
     plt.bar(center, hist, align='center', width=width)
     plt.title('Average Minions Killed Per Game')
     plt.gca().set_position((.1, .3, .8, .6))
-    plt.figtext(.1, .1, "Average Minions Killed per Game: " + str(round(lol_analyzer.getAvgMinionsKilled())) + "\nMax Minions Killed: " +  str(lol_analyzer.getMaxMinionsKilled()))
+    #plt.figtext(.1, .1, "Average Minions Killed per Game: " + str(round(lol_analyzer.getAvgMinionsKilled())) + "\nMax Minions Killed: " +  str(lol_analyzer.getMaxMinionsKilled()))
+    plt.figtext(.1, .1, "Average Minions Killed per Game: " + str(round(avgMinionsKilled)) + "\nMax Minions Killed: " +  str(maxMinionsKilled))
     plt.ylabel('Number of Games')
     plt.xlabel('Minions Killed')
     plt.show()
     
-def summonerAvgGoldEarningsHistogram():
-    hist, bins = np.histogram(lol_analyzer.getSummonerAvgGoldEarnings(), bins=50)
+def summonerAvgGoldEarningsHistogram(summonerAvgGoldEarnings, avgGoldEarned, maxGoldEarned):
+    #hist, bins = np.histogram(lol_analyzer.getSummonerAvgGoldEarnings(), bins=50)
+    hist, bins = np.histogram(summonerAvgGoldEarnings, bins=50)
     width = 0.7 * (bins[1] - bins[0])
     center = (bins[:-1] + bins[1:]) / 2
     plt.bar(center, hist, align='center', width=width)
     plt.title('Average Gold Earnings per Game')
     plt.gca().set_position((.1, .3, .8, .6))
-    plt.figtext(.1, .1, "Average Gold Earnings per Game: " + str(round(lol_analyzer.getAvgGoldEarned())) + "\nMax Gold Earning: " +  str(lol_analyzer.getMaxGoldEarned()))
+    #plt.figtext(.1, .1, "Average Gold Earnings per Game: " + str(round(lol_analyzer.getAvgGoldEarned())) + "\nMax Gold Earning: " +  str(lol_analyzer.getMaxGoldEarned()))
+    plt.figtext(.1, .1, "Average Gold Earnings per Game: " + str(round(avgGoldEarned)) + "\nMax Gold Earning: " +  str(maxGoldEarned))
     plt.ylabel('Number of Games')
     plt.xlabel('Gold Earned')
     plt.show()
-    
-def summonerAvgGoldSpendingsHistogram():
-    hist, bins = np.histogram(lol_analyzer.getSummonerAvgGoldSpendings(), bins=50)
+
+def summonerAvgGoldSpendingsHistogram(summonerAvgGoldSpendings, avgGoldSpent, maxGoldSpent):
+    print avgGoldSpent
+    print maxGoldSpent
+    # hist, bins = np.histogram(lol_analyzer.getSummonerAvgGoldSpendings(), bins=50)
+    hist, bins = np.histogram(summonerAvgGoldSpendings, bins=50)
     width = 0.7 * (bins[1] - bins[0])
     center = (bins[:-1] + bins[1:]) / 2
     plt.bar(center, hist, align='center', width=width)
     plt.title('Average Gold Spendings per Game')
     plt.gca().set_position((.1, .3, .8, .6))
-    plt.figtext(.1, .1, "Average Gold Spendings per Game: " + str(round(lol_analyzer.getAvgGoldSpent())) + "\nMax Gold Spending: " +  str(lol_analyzer.getMaxGoldSpent()))
+    #plt.figtext(.1, .1, "Average Gold Spendings per Game: " + str(round(lol_analyzer.getAvgGoldSpent())) + "\nMax Gold Spending: " +  str(lol_analyzer.getMaxGoldSpent()))
+    plt.figtext(.1, .1, "Average Gold Spendings per Game: " + str(round(avgGoldSpent)) + "\nMax Gold Spending: " +  str(maxGoldSpent))
     plt.ylabel('Number of Games')
     plt.xlabel('Gold Spent')
     plt.show()
     
-def summonerAvgNumDeathsHistogram():
-    hist, bins = np.histogram(lol_analyzer.getSummonerAvgNumDeaths(), bins=50)
+def summonerAvgNumDeathsHistogram(summonerAvgNumDeaths, avgDeaths, maxDeaths):
+    #hist, bins = np.histogram(lol_analyzer.getSummonerAvgNumDeaths(), bins=50)
+    hist, bins = np.histogram(summonerAvgNumDeaths, bins=50)
     width = 0.7 * (bins[1] - bins[0])
     center = (bins[:-1] + bins[1:]) / 2
     plt.bar(center, hist, align='center', width=width)
     plt.title('Average Number of Deaths per Game')
     plt.gca().set_position((.1, .3, .8, .6))
-    plt.figtext(.1, .1, "Average Number of Deaths per Game: " + str(round(lol_analyzer.getAvgDeaths())) + "\nMax Deaths: " +  str(lol_analyzer.getMaxDeaths()))
+    #plt.figtext(.1, .1, "Average Number of Deaths per Game: " + str(round(lol_analyzer.getAvgDeaths())) + "\nMax Deaths: " +  str(lol_analyzer.getMaxDeaths()))
+    plt.figtext(.1, .1, "Average Number of Deaths per Game: " + str(round(avgDeaths)) + "\nMax Deaths: " +  str(maxDeaths))
     plt.ylabel('Number of Games')
     plt.xlabel('Number of Deaths')
     plt.show()
     
-def summonerAvgTotalDamageDealtHistogram():
+def summonerAvgTotalDamageDealtHistogram(summonerAvgTotalDamageDealt, avgTotalDamageDealt, maxTotalDamageDealt):
     avgTotalDamageDealtThousanths = []
-    for total in lol_analyzer.getSummonerAvgTotalDamageDealt():
+    #for total in lol_analyzer.getSummonerAvgTotalDamageDealt():
+    for total in summonerAvgTotalDamageDealt:
         avgTotalDamageDealtThousanths.append(total / 1000)
     hist, bins = np.histogram(avgTotalDamageDealtThousanths, bins=50)
     width = 0.7 * (bins[1] - bins[0])
@@ -81,14 +101,16 @@ def summonerAvgTotalDamageDealtHistogram():
     plt.bar(center, hist, align='center', width=width)
     plt.title('Average Total Damage Dealt per Game')
     plt.gca().set_position((.1, .3, .8, .6))
-    plt.figtext(.1, .1, "Average Total Damage Dealt per Game: " + str(round(lol_analyzer.getAvgTotalDamageDealt())) + "\nMax Total Damage Dealt: " +  str(lol_analyzer.getMaxTotalDamageDealt()))
+    #plt.figtext(.1, .1, "Average Total Damage Dealt per Game: " + str(round(lol_analyzer.getAvgTotalDamageDealt())) + "\nMax Total Damage Dealt: " +  str(lol_analyzer.getMaxTotalDamageDealt()))
+    plt.figtext(.1, .1, "Average Total Damage Dealt per Game: " + str(round(avgTotalDamageDealt)) + "\nMax Total Damage Dealt: " +  str(maxTotalDamageDealt))
     plt.ylabel('Number of Games')
     plt.xlabel('Total Damage Dealt in Thousands')
     plt.show()
-    
-def summonerAvgTotalDamageTakenHistogram():
+
+def summonerAvgTotalDamageTakenHistogram(summonerAvgTotalDamageTaken, avgTotalDamageTaken, maxTotalDamageTaken):
     avgTotalDamageDealtThousanths = []
-    for total in lol_analyzer.getSummonerAvgTotalDamageTaken():
+    #for total in lol_analyzer.getSummonerAvgTotalDamageTaken():
+    for total in summonerAvgTotalDamageTaken:
         avgTotalDamageDealtThousanths.append(total / 1000)
     hist, bins = np.histogram(avgTotalDamageDealtThousanths, bins=50)
     width = 0.7 * (bins[1] - bins[0])
@@ -96,18 +118,21 @@ def summonerAvgTotalDamageTakenHistogram():
     plt.bar(center, hist, align='center', width=width)
     plt.title('Average Total Damage Taken Per Game')
     plt.gca().set_position((.1, .3, .8, .6))
-    plt.figtext(.1, .1, "Average Total Damage Taken Per Game: " + str(round(lol_analyzer.getAvgTotalDamageTaken())) + "\nMax Total Damage Taken: " +  str(lol_analyzer.getMaxTotalDamageTaken()))
+    #plt.figtext(.1, .1, "Average Total Damage Taken Per Game: " + str(round(lol_analyzer.getAvgTotalDamageTaken())) + "\nMax Total Damage Taken: " +  str(lol_analyzer.getMaxTotalDamageTaken()))
+    plt.figtext(.1, .1, "Average Total Damage Taken Per Game: " + str(round(avgTotalDamageTaken)) + "\nMax Total Damage Taken: " +  str(maxTotalDamageTaken))
     plt.ylabel('Number of Games')
     plt.xlabel('Total Damage Taken in Thousands')
     plt.show()
-    
-def damageTakenDealtBarGraph():
+ 
+def damageTakenDealtBarGraph(summonerAvgTotalDamageDealt, summonerAvgTotalDamageTaken):
     avgTotalDamageDealtThousanths = []
-    for total in lol_analyzer.getSummonerAvgTotalDamageDealt():
+    #for total in lol_analyzer.getSummonerAvgTotalDamageDealt():
+    for total in summonerAvgTotalDamageDealt:
         avgTotalDamageDealtThousanths.append(total / 1000)
     avgTotalDamageTakenThousanths = []
     
-    for total in lol_analyzer.getSummonerAvgTotalDamageTaken():
+    #for total in lol_analyzer.getSummonerAvgTotalDamageTaken():
+    for total in summonerAvgTotalDamageTaken:
         avgTotalDamageTakenThousanths.append(total / 1000)
     
     means_damage_dealt = avgTotalDamageDealtThousanths
@@ -146,11 +171,13 @@ def damageTakenDealtBarGraph():
     
     plt.tight_layout()
     plt.show()
+ 
+def goldSpentEarnedBarGraph(summonerAvgGoldEarnings, summonerAvgGoldSpendings):
     
-def goldSpentEarnedBarGraph():
-    
-    means_gold_earned = lol_analyzer.getSummonerAvgGoldEarnings()
-    means_gold_spent = lol_analyzer.getSummonerAvgGoldSpendings()
+    #means_gold_earned = lol_analyzer.getSummonerAvgGoldEarnings()
+    means_gold_earned = summonerAvgGoldEarnings
+    #means_gold_spent = lol_analyzer.getSummonerAvgGoldSpendings()
+    means_gold_spent = summonerAvgGoldSpendings
     
     if (np.size(means_gold_earned) > np.size(means_gold_spent)):
         means_gold_earned = means_gold_earned[0:np.size(means_gold_spent)]

@@ -17,7 +17,8 @@ def printGamesJson(minId, maxId):
     while id < maxId:
         id += 1 
         try:
-            f = open('../../bd_store/lol/game_data/' + str(id))
+            #f = open('../bd_store/lol/game_data/' + str(id))
+            f = open('bd_store/lol/game_data/' + str(id))
             data = json.load(f)
             print data
         except IOError:
@@ -28,7 +29,7 @@ def printSummonersJson(minId, maxId):
     while id < maxId:
         id += 1 
         try:
-            f = open('../../bd_store/lol/game_data/' + str(id))
+            f = open('bd_store/lol/game_data/' + str(id))
             data = json.load(f)
             print data
         except IOError:
@@ -47,7 +48,7 @@ def getRecentGameChampionIds(minId, maxId):
 def getRecentGameChampionIdsBySummonerId(summonerId):
        championIds = []
        try:
-            f = open('../../bd_store/lol/game_data/' + str(summonerId))
+            f = open('bd_store/lol/game_data/' + str(summonerId))
             games = json.load(f)
             for game in games["games"]:
                 championIds.append(game['championId'])
@@ -68,7 +69,7 @@ def getRecentSpellOneIds(minId, maxId):
 def getRecentSpellOneIdsBySummonerId(summonerId):  
     spellOneIds = []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             spellOneIds.append(game['spell1'])
@@ -89,7 +90,7 @@ def getRecentSpellTwoIds(minId, maxId):
 def getRecentSpellTwoIdsBySummonerId(summonerId):   
     spellTwoIds= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             spellTwoIds.append(game['spell2'])
@@ -110,7 +111,7 @@ def getRecentGoldEarned(minId, maxId):
 def getRecentGoldEarnedBySummonerId(summonerId):
     recentGoldEarned= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -132,7 +133,7 @@ def getRecentNumDeaths(minId, maxId):
 def getRecentNumDeathsBySummonerId(summonerId):
     recentNumDeaths= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -157,7 +158,7 @@ def getRecentMinionsKilled(minId, maxId):
 def getRecentMinionsKilledBySummonerId(summonerId):
     recentMinionsKilled= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -182,7 +183,7 @@ def getRecentGoldSpent(minId, maxId):
 def getRecentGoldSpentBySummonerId(summonerId):
     recentGoldSpent= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -207,7 +208,7 @@ def getRecentTotalDamageDealt(minId, maxId):
 def getRecentTotalDamageDealBySummonerId(summonerId):
     recentTotalDamageDealt= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -232,7 +233,7 @@ def getRecentTotalDamageTaken(minId, maxId):
 def getRecentTotalDamageTakenBySummonerId(summonerId):
     recentTotalDamageTaken= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -257,7 +258,7 @@ def getRecentWins(minId, maxId):
 def getRecentWinsBySummonerId(summonerId):
     recentLargestKillingSprees= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -279,7 +280,7 @@ def getRecentTimesPlayed(minId, maxId):
 def getRecentTimesPlayedBySummonerId(summonerId):
     getRecentTimesPlayedBySummonerId= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -300,7 +301,7 @@ def getRecentDatesPlayed(minId, maxId):
 def getRecentDatesPlayedBySummonerId(summonerId):
     recentDatesPlayed= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             recentDatesPlayed.append(game['createDate'])          
@@ -321,7 +322,7 @@ def getRecentSevenItems(minId, maxId):
 def getRecentSevenItemsBySummonerId(summonerId):
     recentLargestKillingSprees= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('bd_store/lol/game_data/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -530,6 +531,7 @@ def getSummonerWinRatio():
     return summonerAvgWins 
     
 def getSummonerAvgTimePlayedInMinutes():
+    
     summonerAvgTimePlayedInMinutes = []
     results = getRecentTimesPlayed(idMinCollectId, idMaxCollectId)
     for result in results:
@@ -574,8 +576,8 @@ def getSummonerAvgTimePlayedInMinutes():
 #print getMaxTimePlayed()
 #print getSummonerAvgTimePlayedInMinutes()
 #print getSummonerAvgMinionsKilled()
-#print np.size(getSummonerAvgGoldEarnings())
-#print np.size(getSummonerAvgGoldSpendings())
+#print getSummonerAvgGoldEarnings()
+#print getSummonerAvgGoldSpendings()
 #print getSummonerAvgNumDeaths()
 #print getSummonerAvgTotalDamageDealt()
 #print getSummonerAvgTotalDamageTaken()
