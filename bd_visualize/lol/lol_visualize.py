@@ -183,13 +183,13 @@ def goldSpentEarnedBarGraph():
     plt.tight_layout()
     plt.show()
 
-#goldSpentEarnedBarGraph()
+goldSpentEarnedBarGraph()
 #damageTakenDealtBarGraph()
-#summonerAvgTimePlayedInMinutesHistogram() works
+#summonerAvgTimePlayedInMinutesHistogram()
 #summonerAvgMinionsKilledHistogram()
 #summonerAvgGoldEarningsHistogram()
 #summonerAvgGoldSpendingsHistogram()
 #summonerAvgNumDeathsHistogram()
 #summonerAvgTotalDamageDealtHistogram() works
-summonerAvgTotalDamageTakenHistogram()
+#summonerAvgTotalDamageTakenHistogram()
 

@@ -13,7 +13,7 @@ import pylab as pl
 
 key = '37af0e1b-7079-4ae0-bd7e-573d4ff4fe61'
 idMinCollectId = 1500
-idMaxCollectId = 50000
+idMaxCollectId = 5000
 
 def printGamesJson(minId, maxId):
     id = minId
@@ -50,7 +50,7 @@ def getRecentGameChampionIds(minId, maxId):
 def getRecentGameChampionIdsBySummonerId(summonerId):
        championIds = []
        try:
-            f = open('../../bd_store/lol/game_data/' + str(summonerId))
+            f = open('../../bd_store/lol/gameData/' + str(summonerId))
             games = json.load(f)
             for game in games["games"]:
                 championIds.append(game['championId'])
@@ -113,7 +113,7 @@ def getRecentGoldEarned(minId, maxId):
 def getRecentGoldEarnedBySummonerId(summonerId):
     recentGoldEarned= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('../../bd_store/lol/gameData/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -185,7 +185,7 @@ def getRecentGoldSpent(minId, maxId):
 def getRecentGoldSpentBySummonerId(summonerId):
     recentGoldSpent= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('../../bd_store/lol/gameData/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -612,18 +612,18 @@ def getAvgSummonerAssists():
 #print getAvgTotalDamageTaken()
 #print getMinTotalDamageTaken()
 #print getMaxTotalDamageTaken()
-print getAvgTimePlayed()
+#print getAvgTimePlayed()
 #print getMinTimePlayed()
 #print getMaxTimePlayed()
 #print getSummonerAvgTimePlayedInMinutes()
 #print getSummonerAvgMinionsKilled()
-#print np.size(getSummonerAvgGoldEarnings())
-#print np.size(getSummonerAvgGoldSpendings())
+print getSummonerAvgGoldEarnings()
+print getSummonerAvgGoldSpendings()
 #print getSummonerAvgNumDeaths()
 #print getSummonerAvgTotalDamageDealt()
 #print getSummonerAvgTotalDamageTaken()
 #print getSummonerWinRatio()
-print getRecentTimesPlayed(11000,13000)
+#print getRecentTimesPlayed(11000,13000)
 """
 z = getAvgSummonerAssists()
 x = getSummonerMaxDamageDealt()
