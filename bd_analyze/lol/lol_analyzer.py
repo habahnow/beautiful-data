@@ -277,7 +277,6 @@ def getRecentTimesPlayed(minId, maxId):
             recent_times_played_list = recent_times_played_list + result
 
     answer = np.array(recent_times_played_list)
-    print answer.shape
     return recent_times_played_list
 def getRecentTimesPlayedBySummonerId(summonerId):
     recentLargestKillingSprees= []

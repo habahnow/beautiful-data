@@ -123,43 +123,54 @@ def calculate_cost(X, Y, Theta):
     cost = predictions.sum() * (1/(2.0 * N))
     return cost
 
-def gradient_descent(X, Y, Theta, alpha, num_iters):
-    N = len(X) #get number of rows
+def gradient_descent(x,  Y, Theta, alpha, num_iters):
+    N = len(x) #get number of rows
     T = len(Theta)
     Y = np.array(Y)
     # X = np.c_[np.ones(N), X]
 
     for i in range(num_iters):
-        x1 = np.array(X)
+        # x1 = np.array(X)
         Theta1 = np.array(Theta)
-        # print x1.shape , Theta1.shape
-        predictions = x1.dot(Theta)
-        errors_x1 = (predictions - Y.reshape(N,1)) * np.reshape(x1[:, 0], (N, 1))
-        print x1.shape
+        # if i <  9:
+            # print " theta: ", Theta1
+        predictions = x.dot(Theta1)
+        errors_x1 = (predictions - Y.reshape(N,1)) * np.reshape(x[:, 0], (N, 1))
         # print np.reshape(x[:,1], (N, 1))
-        errors_x2 = (predictions - Y.reshape(N,1)) * np.reshape(X[:, 1], (N, 1))
-        Theta[0] = Theta[0] - alpha * (1.0 / N) * errors_x1.sum()
-        Theta[1] = Theta[1] - alpha * (1.0 / N) * errors_x2.sum()
-    return Theta 
+        errors_x2 = (predictions - Y.reshape(N,1)) * np.reshape(x[:, 1], (N, 1))
+        Theta1[0] = Theta1[0] - alpha * (1.0 / N) * errors_x1.sum()
+        Theta1[1] = Theta1[1] - alpha * (1.0 / N) * errors_x2.sum()
+    return Theta1 
   
-def begin_gradient(x, Y, num_iters):
+def begin_gradient(x, y, num_iters):
     x_norm = (x - np.mean(x))/np.std(x)
     theta = np.zeros((2,1))
     x_norm = np.c_[np.ones(len(x)), x]
-    gradient_descent(x_norm, y, theta, .01, num_iters)
+    y = np.array(y)
+    # print "cost before: " , calculate_cost(x_norm,y,theta)
+    theta = gradient_descent(x_norm, y, theta, .01, num_iters)
+    # print "cost after: " , calculate_cost(x_norm,y, theta)
+    # print x
     m = theta[1]
     b = theta[0]
+    b -= np.mean(x)/np.std(x) * m
+    m = m/np.std(x)
     yl = np.polyval([m,b], x)
-    plt.plot(x,yl)
+    # print yl
+    yl = yl * .02
+    yl += -min(yl)
+    # yl = yl + 7000
+    # print yl
+    # x1 = np.array(x)
+    # x1 = np.c_[np.ones(len(x1)), x1]
+    # print x1.dot(theta)
+    plt.plot(x, yl)
     plt.scatter(x, y)
     plt.show()
-# scatter_plot("minions killed", "kk")
-x = lol_analyzer.getRecentTimesPlayed(15,26)
-# print "x: " , (np.array(x)).shape
-# print x
-y = lol_analyzer.getRecentGoldEarned(15, 26)
-# print "y: " , (np.array(y)).shape
-
+x = lol_analyzer.getRecentTimesPlayed(15,800)
+y = lol_analyzer.getRecentGoldEarned(15, 800)
+# plt.scatter(x,y)
+# plt.show()
 begin_gradient(x, y, 1000)
 #summonerAvgTimePlayedInMinutesHistogram()
 #summonerAvgMinionsKilledHistogram()
