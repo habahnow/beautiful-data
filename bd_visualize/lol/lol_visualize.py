@@ -99,8 +99,68 @@ def summonerAvgTotalDamageTakenHistogram():
     plt.ylabel('Number of Games')
     plt.xlabel('Total Damage Taken in Thousands')
     plt.show()
-    
 
+def scatter_plot(string_x , string_y):
+    x = []
+    y = []
+    if string_x == "minions killed":
+         x = lol_analyzer.getRecentMinionsKilled(15, 26)
+         y = lol_analyzer.getRecentGoldEarned(15, 26)
+         print len(x)
+         print range(15,26)
+         plt.scatter(x, y)
+         plt.show()
+
+def calculate_cost(X, Y, Theta):
+    cost = 0.0 #You must return the correct value for cost
+    #add y-intercept term with a column of ones
+    dimX = X.shape #get dimensions of X as a tuple (rows, columns) 
+    N = dimX[0] #get number of rows
+    # X = np.c_[np.ones(N), X]#add column of ones at beginning to accommodate theta0
+    #X is now a ~392x2 while Theta is 2x1
+    #error is cause here
+    predictions = (np.dot(X,Theta) - Y.reshape(dimX[0], 1))**2
+    cost = predictions.sum() * (1/(2.0 * N))
+    return cost
+
+def gradient_descent(X, Y, Theta, alpha, num_iters):
+    N = len(X) #get number of rows
+    T = len(Theta)
+    Y = np.array(Y)
+    # X = np.c_[np.ones(N), X]
+
+    for i in range(num_iters):
+        x1 = np.array(X)
+        Theta1 = np.array(Theta)
+        # print x1.shape , Theta1.shape
+        predictions = x1.dot(Theta)
+        errors_x1 = (predictions - Y.reshape(N,1)) * np.reshape(x1[:, 0], (N, 1))
+        print x1.shape
+        # print np.reshape(x[:,1], (N, 1))
+        errors_x2 = (predictions - Y.reshape(N,1)) * np.reshape(X[:, 1], (N, 1))
+        Theta[0] = Theta[0] - alpha * (1.0 / N) * errors_x1.sum()
+        Theta[1] = Theta[1] - alpha * (1.0 / N) * errors_x2.sum()
+    return Theta 
+  
+def begin_gradient(x, Y, num_iters):
+    x_norm = (x - np.mean(x))/np.std(x)
+    theta = np.zeros((2,1))
+    x_norm = np.c_[np.ones(len(x)), x]
+    gradient_descent(x_norm, y, theta, .01, num_iters)
+    m = theta[1]
+    b = theta[0]
+    yl = np.polyval([m,b], x)
+    plt.plot(x,yl)
+    plt.scatter(x, y)
+    plt.show()
+# scatter_plot("minions killed", "kk")
+x = lol_analyzer.getRecentTimesPlayed(15,26)
+# print "x: " , (np.array(x)).shape
+# print x
+y = lol_analyzer.getRecentGoldEarned(15, 26)
+# print "y: " , (np.array(y)).shape
+
+begin_gradient(x, y, 1000)
 #summonerAvgTimePlayedInMinutesHistogram()
 #summonerAvgMinionsKilledHistogram()
 #summonerAvgGoldEarningsHistogram()

@@ -105,7 +105,7 @@ def getRecentGoldEarned(minId, maxId):
         id += 1 
         result = getRecentGoldEarnedBySummonerId(id)
         if len(result) > 1:
-            recentGoldEarned.append(result)
+            recentGoldEarned = recentGoldEarned + result
     return  recentGoldEarned
 def getRecentGoldEarnedBySummonerId(summonerId):
     recentGoldEarned= []
@@ -268,14 +268,17 @@ def getRecentWinsBySummonerId(summonerId):
     
     
 def getRecentTimesPlayed(minId, maxId):
-    recentLargestKillingSprees= []
+    recent_times_played_list= []
     id = minId
     while id < maxId:
         id += 1 
         result = getRecentTimesPlayedBySummonerId(id)
         if len(result) > 1:
-            recentLargestKillingSprees.append(result)
-    return  recentLargestKillingSprees
+            recent_times_played_list = recent_times_played_list + result
+
+    answer = np.array(recent_times_played_list)
+    print answer.shape
+    return recent_times_played_list
 def getRecentTimesPlayedBySummonerId(summonerId):
     recentLargestKillingSprees= []
     try:
@@ -446,6 +449,8 @@ def getAvgTimePlayed():
     elements = []
     for element in getRecentTimesPlayed(idMinCollectId, idMaxCollectId):
         elements.append(np.average(element))
+    get = np.array(elements)
+    # print get.shape
     return round(np.average(elements))
     
 def getMaxTimePlayed():
@@ -547,7 +552,7 @@ def getSummonerAvgTimePlayedInMinutes():
 #print getAvgTotalDamageTaken()
 #print getMinTotalDamageTaken()
 #print getMaxTotalDamageTaken()
-#print getAvgTimePlayed()
+# getAvgTimePlayed()
 #print getMinTimePlayed()
 #print getMaxTimePlayed()
 #print getSummonerAvgTimePlayedInMinutes()
