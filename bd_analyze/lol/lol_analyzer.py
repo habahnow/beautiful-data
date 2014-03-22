@@ -7,10 +7,13 @@ Created on Tue Mar 18 23:45:05 2014
 
 import json 
 import numpy as np
+import matplotlib.pyplot as plt
+import pylab as pl
+
 
 key = '37af0e1b-7079-4ae0-bd7e-573d4ff4fe61'
-idMinCollectId = 14
-idMaxCollectId = 1000
+idMinCollectId = 10
+idMaxCollectId = 10000
 
 def printGamesJson(minId, maxId):
     id = minId
@@ -207,7 +210,7 @@ def getRecentTotalDamageDealt(minId, maxId):
 def getRecentTotalDamageDealBySummonerId(summonerId):
     recentTotalDamageDealt= []
     try:
-        f = open('../../bd_store/lol/game_data/' + str(summonerId))
+        f = open('../../bd_store/lol/gameData/' + str(summonerId))
         games = json.load(f)
         for game in games["games"]:
             stats =  game['stats']
@@ -535,8 +538,45 @@ def getSummonerAvgTimePlayedInMinutes():
     for result in results:
         summonerAvgTimePlayedInMinutes.append(round(np.average(result) /  60.0))
     return summonerAvgTimePlayedInMinutes 
-    
 
+def getSummonerMaxDamageDealt():
+    summonerMaxDamage = []
+    results = getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId)
+    for result in results:
+        maxe = max(np.array(result))
+        summonerMaxDamage.append(maxe)
+    return summonerMaxDamage
+
+def getSummonerAssistsById(summonerId):
+    summonerAssists= []
+    try:
+        f = open('../../bd_store/lol/gameData/' + str(summonerId))
+        games = json.load(f)
+        for game in games["games"]:
+            stats =  game['stats']
+            try:
+                summonerAssists.append(stats['assists'])
+            except KeyError:
+                summonerAssists.append(0)
+                
+    except IOError:
+        pass
+    return summonerAssists
+def getRecentSummonerAssists(minId, maxId):
+    recentSummonerAssists= []
+    id = minId
+    while id < maxId:
+        id += 1 
+        result = getSummonerAssistsById(id)
+        if len(result) > 1:
+            recentSummonerAssists.append(result)
+    return recentSummonerAssists
+def getAvgSummonerAssists():
+    avgSummonerAssists = []
+    results = getRecentSummonerAssists(idMinCollectId, idMaxCollectId)
+    for result in results:
+        avgSummonerAssists.append(round(np.average(result), 3))
+    return avgSummonerAssists
 #printGamesJson(idMinCollectId, idMaxCollectId)
 #printSummonersJson(idMinCollectId, idMaxCollectId)
 #print getRecentGameChampionIds(idMinCollectId, idMaxCollectId)
@@ -548,6 +588,8 @@ def getSummonerAvgTimePlayedInMinutes():
 #print getRecentGoldSpent(idMinCollectId, idMaxCollectId)
 #print getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId)
 #print getRecentTotalDamageTaken(idMinCollectId, idMaxCollectId)
+#print np.max(np.array(getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId))[0])
+#print getSummonerMaxDamageDealt() #######
 #print getRecentWins(idMinCollectId, idMaxCollectId)
 #print getRecentTimesPlayed(idMinCollectId, idMaxCollectId)
 #print getRecentDatesPlayed(idMinCollectId, idMaxCollectId)
@@ -580,3 +622,22 @@ def getSummonerAvgTimePlayedInMinutes():
 #print getSummonerAvgTotalDamageDealt()
 #print getSummonerAvgTotalDamageTaken()
 #print getSummonerWinRatio()
+print getRecentSummonerAssists(idMinCollectId, idMaxCollectId)
+print getAvgSummonerAssists()
+z = getAvgSummonerAssists()
+x = getSummonerMaxDamageDealt()
+y = getSummonerAvgTotalDamageDealt()
+print np.array(z).shape
+print np.array(y).shape
+print np.array(x).shape
+T = np.arctan2(y,x)
+print T
+
+# physical damage, magical damage
+
+plt.scatter(x, y,c = T, alpha=0.5)
+plt.xlabel('Max Damage Dealt')
+plt.ylabel('Avg Total Damage Dealt')
+
+plt.show()
+
