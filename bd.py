@@ -47,6 +47,8 @@ if __name__ == "__main__":
         lol_visualize.goldSpentEarnedBarGraph(lol_analyzer.getSummonerAvgGoldEarnings(), lol_analyzer.getSummonerAvgGoldSpendings())
     elif args.lol == 'DamageScatterPlot':
         lol_visualize.plotScatterMaxDamagevAvgTotalDamage(lol_analyzer.getSummonerMaxDamageDealt(), lol_analyzer.getSummonerAvgTotalDamageDealt(), lol_analyzer.getArcTan(lol_analyzer.getSummonerMaxDamageDealt(), lol_analyzer.getSummonerAvgTotalDamageDealt()))
+    elif args.lol == 'GradFunctionGraph':
+        lol_visualize.begin_gradient(lol_analyzer.getRecentTimesPlayed(15, 200), lol_analyzer.getRecentGoldEarned(15, 200) , 1000)
     else:
         print 'No such graph exist !'
 

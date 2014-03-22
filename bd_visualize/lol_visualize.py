@@ -6,7 +6,7 @@ Created on Thu Mar 20 16:35:46 2014
 """
 #import lol_analyzer
 
-#import lol_analyzer
+# import lol_analyzer
 
 #import os
 #import sys
@@ -166,7 +166,10 @@ def begin_gradient(x, y, num_iters):
     m = m/np.std(x)
     yl = (np.polyval([m,b], x)) * scale_down
     yl += -min(yl)
-    plt.plot(x, yl)
+    plt.title('Linear Regression')
+    plt.xlabel('Time in Seconds')
+    plt.ylabel('Gold ')
+    plt.plot(x, yl, 'r-')
     plt.scatter(x, y)
     plt.show()
 # x = lol_analyzer.getRecentTimesPlayed(15,800)
@@ -280,11 +283,11 @@ def plotScatterMaxDamagevAvgTotalDamage(derp, dert, tan):
 #summonerAvgMinionsKilledHistogram()
 #summonerAvgGoldEarningsHistogram()
 #summonerAvgGoldSpendingsHistogram()
-x = lol_analyzer.getRecentTimesPlayed(15,800)
-y = lol_analyzer.getRecentGoldEarned(15, 800)
+# x = lol_analyzer.getRecentTimesPlayed(15,800)
+# y = lol_analyzer.getRecentGoldEarned(15, 800)
 # plt.scatter(x,y)
 # plt.show()
-begin_gradient(x, y, 1000)
+# begin_gradient(x, y, 1000)
 #summonerAvgNumDeathsHistogram()
 #summonerAvgTotalDamageDealtHistogram()
 #summonerAvgTotalDamageTakenHistogram()
