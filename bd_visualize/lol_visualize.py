@@ -208,6 +208,19 @@ def goldSpentEarnedBarGraph(summonerAvgGoldEarnings, summonerAvgGoldSpendings):
     
     plt.tight_layout()
     plt.show()
+#####
+
+def plotScatterMaxDamagevAvgTotalDamage(derp, dert, tan):
+    x = derp
+    y = dert
+
+    T = tan
+
+    plt.scatter(x, y,c = T, alpha=0.5)
+    plt.xlabel('Max Damage Dealt')
+    plt.ylabel('Avg Total Damage Dealt')
+
+    plt.show()
 
 #goldSpentEarnedBarGraph()
 #damageTakenDealtBarGraph()

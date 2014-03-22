@@ -537,7 +537,16 @@ def getSummonerAvgTimePlayedInMinutes():
     for result in results:
         summonerAvgTimePlayedInMinutes.append(round(np.average(result) /  60.0))
     return summonerAvgTimePlayedInMinutes 
-    
+# maxDamage    
+def getSummonerMaxDamageDealt():
+    summonerMaxDamage = []
+    results = getRecentTotalDamageDealt(idMinCollectId, idMaxCollectId)
+    for result in results:
+        maxe = max(np.array(result))
+        summonerMaxDamage.append(maxe)
+    return summonerMaxDamage
+def getArcTan(x, y):
+    return np.arctan2(y, x)
 
 #printGamesJson(idMinCollectId, idMaxCollectId)
 #printSummonersJson(idMinCollectId, idMaxCollectId)
