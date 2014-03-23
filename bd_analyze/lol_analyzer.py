@@ -34,8 +34,7 @@ def printSummonersJson(minId, maxId):
             print data
         except IOError:
             print 'no game file associated; skipping id' + str(id)
-            
-            
+                   
 def getRecentGameChampionIds(minId, maxId):
     championIds = []
     id = minId
@@ -45,6 +44,7 @@ def getRecentGameChampionIds(minId, maxId):
         if len(result) > 1:
             championIds.append(result)
     return championIds
+
 def getRecentGameChampionIdsBySummonerId(summonerId):
        championIds = []
        try:
@@ -55,8 +55,7 @@ def getRecentGameChampionIdsBySummonerId(summonerId):
        except IOError:
             pass  
        return championIds
-       
-       
+        
 def getRecentSpellOneIds(minId, maxId):
     spellOneIds = []
     id = minId
@@ -66,6 +65,7 @@ def getRecentSpellOneIds(minId, maxId):
         if len(result) > 1:
             spellOneIds.append(result)
     return spellOneIds
+
 def getRecentSpellOneIdsBySummonerId(summonerId):  
     spellOneIds = []
     try:
@@ -76,8 +76,7 @@ def getRecentSpellOneIdsBySummonerId(summonerId):
     except IOError:
         pass
     return spellOneIds
-    
-    
+       
 def getRecentSpellTwoIds(minId, maxId):
     spellTwoIds= []
     id = minId
@@ -87,6 +86,7 @@ def getRecentSpellTwoIds(minId, maxId):
         if len(result) > 1:
             spellTwoIds.append(result)
     return  spellTwoIds  
+
 def getRecentSpellTwoIdsBySummonerId(summonerId):   
     spellTwoIds= []
     try:
@@ -97,8 +97,7 @@ def getRecentSpellTwoIdsBySummonerId(summonerId):
     except IOError:
         pass
     return  spellTwoIds
-  
-  
+   
 def getRecentGoldEarned(minId, maxId):
     recentGoldEarned= []
     id = minId
@@ -108,6 +107,7 @@ def getRecentGoldEarned(minId, maxId):
         if len(result) > 1:
             recentGoldEarned = recentGoldEarned + result
     return  recentGoldEarned
+
 def getRecentGoldEarnedBySummonerId(summonerId):
     recentGoldEarned= []
     try:
@@ -119,8 +119,7 @@ def getRecentGoldEarnedBySummonerId(summonerId):
     except IOError:
         pass
     return  recentGoldEarned
-    
-    
+     
 def getRecentNumDeaths(minId, maxId):
     recentNumDeaths= []
     id = minId
@@ -129,7 +128,8 @@ def getRecentNumDeaths(minId, maxId):
         result = getRecentNumDeathsBySummonerId(id)
         if len(result) > 1:
             recentNumDeaths.append(result)
-    return  recentNumDeaths   
+    return  recentNumDeaths  
+
 def getRecentNumDeathsBySummonerId(summonerId):
     recentNumDeaths= []
     try:
@@ -145,7 +145,6 @@ def getRecentNumDeathsBySummonerId(summonerId):
         pass
     return  recentNumDeaths
     
-    
 def getRecentMinionsKilled(minId, maxId):
     recentMinionsKilled= []
     id = minId
@@ -155,6 +154,7 @@ def getRecentMinionsKilled(minId, maxId):
         if len(result) > 1:
             recentMinionsKilled.append(result)
     return  recentMinionsKilled
+
 def getRecentMinionsKilledBySummonerId(summonerId):
     recentMinionsKilled= []
     try:
@@ -169,8 +169,7 @@ def getRecentMinionsKilledBySummonerId(summonerId):
     except IOError:
         pass
     return  recentMinionsKilled
-    
-    
+        
 def getRecentGoldSpent(minId, maxId):
     recentGoldSpent= []
     id = minId
@@ -180,6 +179,7 @@ def getRecentGoldSpent(minId, maxId):
         if len(result) > 1:
             recentGoldSpent.append(result)
     return  recentGoldSpent
+
 def getRecentGoldSpentBySummonerId(summonerId):
     recentGoldSpent= []
     try:
@@ -194,8 +194,7 @@ def getRecentGoldSpentBySummonerId(summonerId):
     except IOError:
         pass
     return  recentGoldSpent
-    
-    
+      
 def getRecentTotalDamageDealt(minId, maxId):
     recentTotalDamageDealt= []
     id = minId
@@ -205,6 +204,7 @@ def getRecentTotalDamageDealt(minId, maxId):
         if len(result) > 1:
             recentTotalDamageDealt.append(result)
     return  recentTotalDamageDealt
+
 def getRecentTotalDamageDealBySummonerId(summonerId):
     recentTotalDamageDealt= []
     try:
@@ -220,7 +220,6 @@ def getRecentTotalDamageDealBySummonerId(summonerId):
         pass
     return  recentTotalDamageDealt
     
-
 def getRecentTotalDamageTaken(minId, maxId):
     recentTotalDamageTaken= []
     id = minId
@@ -230,6 +229,7 @@ def getRecentTotalDamageTaken(minId, maxId):
         if len(result) > 1:
             recentTotalDamageTaken.append(result)
     return  recentTotalDamageTaken
+
 def getRecentTotalDamageTakenBySummonerId(summonerId):
     recentTotalDamageTaken= []
     try:
@@ -243,8 +243,7 @@ def getRecentTotalDamageTakenBySummonerId(summonerId):
                 pass
     except IOError:
         pass
-    return  recentTotalDamageTaken
-    
+    return  recentTotalDamageTaken   
     
 def getRecentWins(minId, maxId):
     recentLargestKillingSprees= []
@@ -255,6 +254,7 @@ def getRecentWins(minId, maxId):
         if len(result) > 1:
             recentLargestKillingSprees.append(result)
     return  recentLargestKillingSprees
+
 def getRecentWinsBySummonerId(summonerId):
     recentLargestKillingSprees= []
     try:
@@ -266,8 +266,7 @@ def getRecentWinsBySummonerId(summonerId):
     except IOError:
         pass
     return  recentLargestKillingSprees
-    
-    
+      
 def getRecentTimesPlayed(minId, maxId):
     recent_times_played_list= []
     id = minId
@@ -279,6 +278,7 @@ def getRecentTimesPlayed(minId, maxId):
 
     answer = np.array(recent_times_played_list)
     return recent_times_played_list
+    
 def getRecentTimesPlayedBySummonerId(summonerId):
     getRecentTimesPlayedBySummonerId= []
     try:
@@ -550,7 +550,7 @@ def getSummonerMaxDamageDealt():
     return summonerMaxDamage
 def getArcTan(x, y):
     return np.arctan2(y, x)
-
+# TEST CALLS FOR TESTING FUNCTION RESULT & ABILITY TO PRODUCE WHAT WE NEED
 #printGamesJson(idMinCollectId, idMaxCollectId)
 #printSummonersJson(idMinCollectId, idMaxCollectId)
 #print getRecentGameChampionIds(idMinCollectId, idMaxCollectId)

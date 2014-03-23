@@ -4,16 +4,11 @@ Eddie Arevalo
 Alvaro Ortiz
 Daniel Soto
 """
-#import lol_analyzer
-
-# import lol_analyzer
 
 #import os
 #import sys
 #sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
-#from sortings import config
 
-#from bd_analyze import lol_analyzer
 import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
@@ -276,7 +271,7 @@ def plotScatterMaxDamagevAvgTotalDamage(derp, dert, tan):
     plt.ylabel('Avg Total Damage Dealt')
 
     plt.show()
-
+# TEST CALLS TO VISUALIZATION
 #goldSpentEarnedBarGraph()
 #damageTakenDealtBarGraph()
 #summonerAvgTimePlayedInMinutesHistogram()
