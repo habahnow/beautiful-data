@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 """
-Created on Tue Mar 18 23:45:05 2014
-
-@author: Eddie
+CS 454 Big Data
+Eddie Arevalo
+Alvaro Ortiz
+Daniel Soto
 """
 
 import json 

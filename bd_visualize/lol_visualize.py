@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 """
-Created on Thu Mar 20 16:35:46 2014
-
-@author: Eddie
+CS 454 Big Data
+Eddie Arevalo
+Alvaro Ortiz
+Daniel Soto
 """
 #import lol_analyzer
 

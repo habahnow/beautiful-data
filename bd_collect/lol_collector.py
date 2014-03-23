@@ -1,3 +1,10 @@
+"""
+CS 454 Big Data
+Eddie Arevalo
+Alvaro Ortiz
+Daniel Soto
+"""
+
 from urllib2 import urlopen, HTTPError, URLError
 from json import load, dump
 import numpy as np

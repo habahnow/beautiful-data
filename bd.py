@@ -1,5 +1,10 @@
 #!/usr/bin/python
-
+"""
+CS 454 Big Data
+Eddie Arevalo
+Alvaro Ortiz
+Daniel Soto
+"""
 import argparse
 from collections import defaultdict
 from bd_visualize import lol_visualize
